@@ -9,6 +9,7 @@ public class Game {
 	
 	public Game(Dice die1, Dice die2, Dice die3) {
 		if (die1 == null || die2 == null || die3 == null) throw new IllegalArgumentException("Dice cannot be null.");
+		//Still using original values
 		dice = new ArrayList<Dice>();
 		dice.add(die1);
 		dice.add(die2);
@@ -33,7 +34,7 @@ public class Game {
 		    
 		int matches = 0;
 		for ( Dice d : dice) {
-			d.roll();
+			//d.roll();
 			if (d.getValue().equals(pick)) { 
 				matches += 1;
 			}
@@ -42,7 +43,7 @@ public class Game {
 		int winnings = matches * bet;
 
 		if (matches > 0) {			
-			player.receiveWinnings(winnings);
+			player.receiveWinnings(winnings, bet);
 		}
         return winnings;		
 	}

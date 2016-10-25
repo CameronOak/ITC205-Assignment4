@@ -24,7 +24,7 @@ public class Main {
             int loseCount = 0;
             
             //Number of games played
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 100; i++)
             {
             	String name = "Fred";
             	int balance = 100;
@@ -32,6 +32,7 @@ public class Main {
                 player = new Player(name, balance);
                 player.setLimit(limit);
                 int bet = 5;
+                
 
                 System.out.println(String.format("Start Game %d: ", i));
                 System.out.println(String.format("%s starts with balance %d, limit %d", 
@@ -40,7 +41,9 @@ public class Main {
                 int turn = 0;
                 while (player.balanceExceedsLimitBy(bet) && player.getBalance() < 200)
                 {
-                    turn++;                    
+                    turn++;      
+                    
+                    //Players dice
                 	DiceValue pick = DiceValue.getRandom();
                    
                 	System.out.printf("Turn %d: %s bet %d on %s\n",

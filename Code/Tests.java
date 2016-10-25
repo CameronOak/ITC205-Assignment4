@@ -83,5 +83,43 @@ public class Tests {
 		}
 
 	}
+	@Test
+	public void TestUnchangedValues() {
+		
+		int bet = 1;
+		int balance = 201;
+		int limit = 0;
+		int same = 0;
+		String name = "Fred";
+		DiceValue pick = DiceValue.ANCHOR;
+
+		Dice d1 = new Dice();
+		Dice d2 = new Dice();
+		Dice d3 = new Dice();	
+		Game game = new Game(d1, d2, d3);
+		
+		Player player = new Player(name, balance);
+		player.setLimit(limit);
+		List<DiceValue> currentValue = game.getDiceValues();
+		List<DiceValue> prevValue = game.getDiceValues();
+		
+		//winnings = game.playRound(player, pick, bet);
+		currentValue = game.getDiceValues();
+		prevValue = game.getDiceValues();
+		
+		for(int i = 0; i < balance - 1; i++){
+			game.playRound(player, pick, bet);
+			currentValue = game.getDiceValues();
+			if(prevValue.equals(currentValue)){
+				System.out.println("same");
+				same ++;
+			}
+		}
+		if(same >= balance -1){
+			assertFalse(same + " rounds have the exact same die values", same >= balance - 1);
+		}
+
+		
+	}
 
 }
